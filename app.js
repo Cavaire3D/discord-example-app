@@ -3,11 +3,6 @@ import './src/commands/games/2048.js';
 const Discord = import("discord.js");
 
 
-  
-
-
-client.login(config.token);
-
 import express from 'express';
 import {
   InteractionType,
@@ -19,7 +14,7 @@ import {
 import { VerifyDiscordRequest, getRandomEmoji, DiscordRequest } from './utils.js';
 import { getShuffledOptions, getResult } from './game.js';
 import { run } from './src/commands/games/2048.js';
-import { eventLoader, commandLoader } from "./src/functions/loaders";
+import { eventLoader, commandLoader } from "./src/functions/loaders.js";
 
 // Create an express app
 const app = express();

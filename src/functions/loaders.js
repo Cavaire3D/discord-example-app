@@ -1,5 +1,13 @@
 //functions used to load all commands and events into the bot
-const config = require('../../config.json')
+//import { createRequire } from "module";
+//const require = createRequire(import.meta.url);
+import { readFile } from 'fs/promises';
+const config = JSON.parse(
+  await readFile(
+    new URL('../../config.json', import.meta.url)
+  )
+);
+//const config = require('../../config.json')
 const fs = require("fs");
 const path = require("path");
 const srcPath = path.join(__dirname, "../");
@@ -15,7 +23,7 @@ function splitPath(path) {
   return { dirPart: dirPart, filePart: filePart };
 }
 
-async function eventLoader(client) {
+export async function eventLoader(client) {
 
   //event loader
   await fs.readdir(
@@ -33,7 +41,7 @@ async function eventLoader(client) {
   );
 }
 
-async function commandLoader(client) {
+export async function commandLoader(client) {
   let cmdPath = `${srcPath}/commands`;
   await fs.readdir(cmdPath, { withFileTypes: true }, async (err, files) => {
     if (err) return console.error(err);
@@ -75,7 +83,7 @@ async function commandLoader(client) {
     }
   });
 }
-async function slashCommandRegister (client) {
+export async function slashCommandRegister (client) {
   (async () => {
     try {
       console.log(`Started refreshing ${client.commands.size} application (/) commands.`);
@@ -93,6 +101,6 @@ async function slashCommandRegister (client) {
     }
   })();
 }
-module.exports.eventLoader = eventLoader;
-module.exports.commandLoader = commandLoader;
-module.exports.slashCommandRegister = slashCommandRegister;
+//module.exports.eventLoader = eventLoader;
+//module.exports.commandLoader = commandLoader;
+//module.exports.slashCommandRegister = slashCommandRegister;
