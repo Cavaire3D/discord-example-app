@@ -25,7 +25,7 @@ const TEST_COMMAND = {
 };
 
 // 2048 command
-const TwoFour_COMMAND = {
+const TWO_COMMAND = {
   name: '2048',
   description: 'Play 2048',
   type: 1,
@@ -47,6 +47,6 @@ const CHALLENGE_COMMAND = {
   type: 1,
 };
 
-const ALL_COMMANDS = [TEST_COMMAND, CHALLENGE_COMMAND,TwoFour_COMMAND];
+const ALL_COMMANDS = [TEST_COMMAND, CHALLENGE_COMMAND,TWO_COMMAND];
 
 InstallGlobalCommands(process.env.APP_ID, ALL_COMMANDS);
