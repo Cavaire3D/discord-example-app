@@ -14,23 +14,6 @@ import {
 import { VerifyDiscordRequest, getRandomEmoji, DiscordRequest } from './utils.js';
 import { getShuffledOptions, getResult } from './game.js';
 //import { eventLoader, commandLoader } from "./src/functions/loaders.js";
-const Game = new TwoZeroFourEight({
-  message: interaction,
-  isSlashGame: true,
-  embed: {
-    title: '2048',
-    color: '#5865F2'
-  },
-  emojis: {
-    up: '⬆️',
-    down: '⬇️',
-    left: '⬅️',
-    right: '➡️',
-  },
-  timeoutTime: 60000,
-  buttonStyle: 'PRIMARY',
-  playerOnlyMessage: 'Only {player} can use these buttons.'
-});
 
 
 // Create an express app
@@ -59,6 +42,25 @@ commandLoader(app);
 /**
  * Interactions endpoint URL where Discord will send HTTP requests
  */
+const Game = new TwoZeroFourEight({
+  message: { content: `This game has been disabled in the bot's config. If you think this is an error, please contact the server owner.`, ephemeral: true },
+  isSlashGame: true,
+  embed: {
+    title: '2048',
+    color: '#5865F2'
+  },
+  emojis: {
+    up: '⬆️',
+    down: '⬇️',
+    left: '⬅️',
+    right: '➡️',
+  },
+  timeoutTime: 60000,
+  buttonStyle: 'PRIMARY',
+  playerOnlyMessage: 'Only {player} can use these buttons.'
+});
+
+
 app.post('/interactions', async function (req, res) {
   // Interaction type and data
   const { type, id, data } = req.body;
