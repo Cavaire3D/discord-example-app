@@ -1,6 +1,6 @@
 import 'dotenv/config';
-import './src/commands/games/2048.js';
-const Discord = import("discord.js");
+//import 'discord-gamecord';
+import { TwoZeroFourEight } from 'discord-gamecord';
 
 
 import express from 'express';
@@ -13,8 +13,25 @@ import {
 } from 'discord-interactions';
 import { VerifyDiscordRequest, getRandomEmoji, DiscordRequest } from './utils.js';
 import { getShuffledOptions, getResult } from './game.js';
-import { run } from './src/commands/games/2048.js';
-import { eventLoader, commandLoader } from "./src/functions/loaders.js";
+//import { eventLoader, commandLoader } from "./src/functions/loaders.js";
+const Game = new TwoZeroFourEight({
+  message: interaction,
+  isSlashGame: true,
+  embed: {
+    title: '2048',
+    color: '#5865F2'
+  },
+  emojis: {
+    up: '⬆️',
+    down: '⬇️',
+    left: '⬅️',
+    right: '➡️',
+  },
+  timeoutTime: 60000,
+  buttonStyle: 'PRIMARY',
+  playerOnlyMessage: 'Only {player} can use these buttons.'
+});
+
 
 // Create an express app
 const app = express();
@@ -25,6 +42,7 @@ app.use(express.json({ verify: VerifyDiscordRequest(process.env.PUBLIC_KEY) }));
 
 // Store for in-progress games. In production, you'd want to use a DB
 const activeGames = {};
+/*
 const config = import("./config.json");
 const database = import('easy-json-database')
 const db = import("./FishyData/PlayerDatabase.json", {
@@ -37,6 +55,7 @@ app.slashCommands = [];
 app.database = db;
 eventLoader(app);
 commandLoader(app);
+*/
 /**
  * Interactions endpoint URL where Discord will send HTTP requests
  */
@@ -65,11 +84,11 @@ app.post('/interactions', async function (req, res) {
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
           // Fetches a random emoji to send from a helper function
-          content: 'hello world ' + getRandomEmoji(),
+          content: 'hello world ' + getRandomEmoji() + Game.startGame(),
         },
       });
     }
-    if (name === '2048') {
+    if (name === '2048' && id) {
       // Send a message into the channel where command was triggered from
       activeGames[id] = {
         id: userId,
@@ -79,7 +98,7 @@ app.post('/interactions', async function (req, res) {
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
           // Fetches a random emoji to send from a helper function
-          content: run(),
+          content: Game.startGame(),
         },
       });
     }

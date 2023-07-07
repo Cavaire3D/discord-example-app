@@ -8,10 +8,10 @@ const config = JSON.parse(
   )
 );
 //const config = require('../../config.json')
-const fs = require("fs");
-const path = require("path");
+const fs = import("fs");
+const path = import("path");
 const srcPath = path.join(__dirname, "../");
-const { REST, Routes } = require('discord.js')
+import { REST, Routes } from 'discord.js';
 const rest = new REST({version : "10"}).setToken(config.token);
 
 function splitPath(path) {
