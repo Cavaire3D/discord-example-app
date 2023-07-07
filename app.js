@@ -2,7 +2,6 @@ import 'dotenv/config';
 import './src/commands/games/2048.js';
 const Discord = import("discord.js");
 
-import { eventLoader, commandLoader } from ("./src/functions/loaders");
 
   
 
@@ -20,6 +19,8 @@ import {
 import { VerifyDiscordRequest, getRandomEmoji, DiscordRequest } from './utils.js';
 import { getShuffledOptions, getResult } from './game.js';
 import { run } from './src/commands/games/2048.js';
+import { eventLoader, commandLoader } from "./src/functions/loaders";
+
 // Create an express app
 const app = express();
 // Get port, or default to 3000
