@@ -1,5 +1,5 @@
 {
-    "token" : "MTEyMzAzMDk3MzcyNzExNzMzMg.GqDbc5.19MnfyGykICEneyGo2Fe49zMr3ko--hjOkHQH8",
+    "token" : "yourSuperSecretBotTokenHere",
     "commandDisabledMessage" : "This game has been disabled in the bot's config. If you think this is an error, please contact the server owner.",
     "games" : {
         "2048" : true,
@@ -8,7 +8,7 @@
         "FastType" : true,
         "FindEmoji" : true,
         "Fishy" : true,
-        "Flood" : true,
+        "Flood" : false,
         "GuessThePokemon" : true,
         "Hangman" : true,
         "MatchPairs" : true,

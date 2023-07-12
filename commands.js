@@ -23,7 +23,11 @@ const TEST_COMMAND = {
   description: 'Basic command',
   type: 1,
 };
-
+const DAILY_COMMAND = {
+  name: 'Daily',
+  description: ' Gain Coins',
+  type: 1,
+};
 // 2048 command
 const TWO_COMMAND = {
   name: '2048',
@@ -47,6 +51,6 @@ const CHALLENGE_COMMAND = {
   type: 1,
 };
 
-const ALL_COMMANDS = [TEST_COMMAND, TWO_COMMAND, CHALLENGE_COMMAND];
+const ALL_COMMANDS = [TEST_COMMAND, DAILY_COMMAND, TWO_COMMAND, CHALLENGE_COMMAND];
 
 InstallGlobalCommands(process.env.APP_ID, ALL_COMMANDS);

@@ -1,7 +1,4 @@
 import 'dotenv/config';
-//import 'discord-gamecord';
-import { TwoZeroFourEight } from 'discord-gamecord';
-
 
 import express from 'express';
 import {
@@ -25,41 +22,6 @@ app.use(express.json({ verify: VerifyDiscordRequest(process.env.PUBLIC_KEY) }));
 
 // Store for in-progress games. In production, you'd want to use a DB
 const activeGames = {};
-/*
-const config = import("./config.json");
-const database = import('easy-json-database')
-const db = import("./FishyData/PlayerDatabase.json", {
-  snapshots: {
-      enabled: false
-  }
-});
-app.commands = new Discord.Collection();
-app.slashCommands = [];
-app.database = db;
-eventLoader(app);
-commandLoader(app);
-*/
-/**
- * Interactions endpoint URL where Discord will send HTTP requests
- */
-const Game = new TwoZeroFourEight({
-  message: { content: `This game has been disabled in the bot's config. If you think this is an error, please contact the server owner.`, ephemeral: true },
-  isSlashGame: true,
-  embed: {
-    title: '2048',
-    color: '#5865F2'
-  },
-  emojis: {
-    up: '⬆️',
-    down: '⬇️',
-    left: '⬅️',
-    right: '➡️',
-  },
-  timeoutTime: 60000,
-  buttonStyle: 'PRIMARY',
-  playerOnlyMessage: 'Only {player} can use these buttons.'
-});
-
 
 app.post('/interactions', async function (req, res) {
   // Interaction type and data
@@ -86,11 +48,24 @@ app.post('/interactions', async function (req, res) {
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
           // Fetches a random emoji to send from a helper function
-          content: 'hello world ' + getRandomEmoji() + Game.startGame(),
+          content: 'Hello Human, Edit',
+          //Game.startGame(),
         },
       });
     }
-    if (name === '2048' && id) {
+    // "Daily Coins" command
+    if (name === 'daily') {
+      // Send a message into the channel where command was triggered from
+      return res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+          // Fetches a random emoji to send from a helper function
+          content: 'You Will Gain coins soon',
+          //Game.startGame(),
+        },
+      });
+    }
+    if (name === 'twos' && id) {
       // Send a message into the channel where command was triggered from
       activeGames[id] = {
         id: userId,
