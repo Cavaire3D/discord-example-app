@@ -6,7 +6,7 @@ $author[WORK!;https://cdn.discordapp.com/attachments/798714067421626427/79886237
 $thumbnail[$userAvatar[$authorID]]
 $description[You work as $randomText[Game Developer;YouTuber;Doctor;Musician;Editor;Engineer;Pro Gamer;Farmer;Streamer], And you get **$$random[45;350]** Cash]
 $color[RANDOM]
-$footer[SOURCE CODE FROM Jastin Ch in Youtube || https://youtube.com/c/JastinCh || Full Made By JastinCh!]
+$footer[Econmy SOURCE CODE FROM Jastin Ch in Youtube]
 $addTimestamp
 
 $setGlobalUserVar[cash;$sum[$getGlobalUserVar[cash];$random[45;350]]]
