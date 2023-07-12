@@ -9,7 +9,7 @@ module.exports = {
       .setName(`flood`)
       .setDescription(`Play a game of flood`),
   run: async (client, interaction, options, cmd) => {
-    if(!false) return interaction.reply({ content : `${"This game has been disabled in the bot's config. If you think this is an error, please contact the server owner."}`, ephemeral: true})
+    if(!true) return interaction.reply({ content : `${"This game has been disabled in the bot's config. If you think this is an error, please contact the server owner."}`, ephemeral: true})
     
     const Game = new Flood({
       message: interaction,
